@@ -56,7 +56,7 @@ export default function Checkout({ carrinho, limparCarrinho }: CheckoutProps) {
       }));
 
       // Envia para backend
-      await axios.post("http://localhost:3001/pedidos", {
+      await axios.post("https://coroa-burguer-backend.onrender.com/pedidos", {
         total,
         itens: itensFormatados,
         nome_cliente: nome,

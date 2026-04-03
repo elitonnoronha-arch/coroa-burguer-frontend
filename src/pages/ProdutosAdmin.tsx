@@ -51,7 +51,7 @@ export default function ProdutosAdmin() {
 
   const buscarProdutos = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/produtos");
+      const res = await axios.get("https://coroa-burguer-backend.onrender.com/produtos");
       setProdutos(res.data);
     } catch (err) {
       console.log(err);
@@ -71,11 +71,11 @@ export default function ProdutosAdmin() {
     const formData = new FormData();
     formData.append("imagem", imagem);
 
-    const res = await axios.post("http://localhost:3001/upload", formData, {
+    const res = await axios.post("https://coroa-burguer-backend.onrender.com/upload", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    setImagemUrl(`http://localhost:3001${res.data.imagem}`);
+    setImagemUrl(`https://coroa-burguer-backend.onrender.com${res.data.imagem}`);
     alert("Imagem enviada!");
   };
 
@@ -106,12 +106,12 @@ export default function ProdutosAdmin() {
     try {
       if (editandoId !== null) {
         await axios.put(
-          `http://localhost:3001/produtos/${editandoId}`,
+          `https://coroa-burguer-backend.onrender.com/produtos/${editandoId}`,
           dadosProduto
         );
         alert("Produto atualizado!");
       } else {
-        await axios.post("http://localhost:3001/produtos", dadosProduto);
+        await axios.post("https://coroa-burguer-backend.onrender.com/produtos", dadosProduto);
         alert("Produto cadastrado!");
       }
 
@@ -133,7 +133,7 @@ export default function ProdutosAdmin() {
 
   const excluirProduto = async (id: number) => {
     if (!window.confirm("Excluir produto?")) return;
-    await axios.delete(`http://localhost:3001/produtos/${id}`);
+    await axios.delete(`https://coroa-burguer-backend.onrender.com/produtos/${id}`);
     buscarProdutos();
   };
 
@@ -249,7 +249,7 @@ export default function ProdutosAdmin() {
               <div key={prod.id} style={{ background: "#fff", padding: 15, borderRadius: 16, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
                 <img
   alt={prod.nome}
-  src={prod.imagem?.startsWith("http") ? prod.imagem : `http://localhost:3001${prod.imagem}`}
+  src={prod.imagem?.startsWith("http") ? prod.imagem : `https://coroa-burguer-backend.onrender.com${prod.imagem}`}
   style={{ width: "100%", height: 150, objectFit: "cover", borderRadius: 10, marginBottom: 10 }}
 />
                 <strong>{prod.nome}</strong>

@@ -71,7 +71,7 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/produtos")
+      .get("https://coroa-burguer-backend.onrender.com/produtos")
       .then(res => setProdutos(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -79,7 +79,7 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
   useEffect(() => {
     const verificarStatus = () => {
       axios
-        .get("http://localhost:3001/loja-status")
+        .get("https://coroa-burguer-backend.onrender.com/loja-status")
         .then(res => setLojaAberta(res.data.loja_aberta))
         .catch(err => console.error(err));
     };
@@ -197,7 +197,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   }
 
   try {
-    const status = await axios.get("http://localhost:3001/loja-status");
+    const status = await axios.get("https://coroa-burguer-backend.onrender.com/loja-status");
 
     if (!status.data.loja_aberta) {
       alert("Estamos fechados no momento");
@@ -219,7 +219,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   formaPagamento
 });
     // ✅ ENVIA CORRETO PRO BACKEND
-    await axios.post("http://localhost:3001/pedidos", {
+    await axios.post("https://coroa-burguer-backend.onrender.com/pedidos", {
       total,
       itens: itensFormatados,
       cliente: {
@@ -407,7 +407,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
     <img
       src={prod.imagem?.startsWith("http")
         ? prod.imagem
-        : `http://localhost:3001${prod.imagem}`}
+        : `https://coroa-burguer-backend.onrender.com${prod.imagem}`}
       alt={prod.nome}
       style={{
         width:"100%",
