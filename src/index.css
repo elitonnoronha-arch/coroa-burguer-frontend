@@ -1,0 +1,38 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+  min-height: 100vh;
+}
+
+/* LINKS */
+a {
+  text-decoration: none;
+}
+
+/* IMAGENS */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* BOTÕES (NEUTRO, SEM INTERFERIR) */
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+/* INPUTS */
+input, textarea, select {
+  font-family: inherit;
+  outline: none;
+}
