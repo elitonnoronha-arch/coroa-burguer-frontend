@@ -54,7 +54,7 @@ export default function ProdutosAdmin() {
 
   const buscarProdutos = async () => {
     try {
-      const res = await axios.get("`${API_URL}/produtos");
+      const res = await axios.get(`${API_URL}/produtos`);
       setProdutos(res.data);
     } catch (err) {
       console.log(err);
@@ -74,7 +74,7 @@ export default function ProdutosAdmin() {
     const formData = new FormData();
     formData.append("imagem", imagem);
 
-    const res = await axios.post("`${API_URL}", formData, {
+    const res = await axios.post(`${API_URL}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
@@ -114,7 +114,7 @@ export default function ProdutosAdmin() {
         );
         alert("Produto atualizado!");
       } else {
-        await axios.post("`${API_URL}/produtos", dadosProduto);
+        await axios.post(`${API_URL}/produtos`, dadosProduto);
         alert("Produto cadastrado!");
       }
 
