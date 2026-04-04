@@ -200,7 +200,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   }
 
   try {
-    const status = await axios.get("`${API_URL}/loja-status");
+    const status = await axios.get(`${API_URL}/loja-status`);
 
     if (!status.data.loja_aberta) {
       alert("Estamos fechados no momento");
@@ -222,7 +222,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   formaPagamento
 });
     // ✅ ENVIA CORRETO PRO BACKEND
-    await axios.post("`${API_URL}/pedidos", {
+    await axios.post(`${API_URL}/pedidos`, {
       total,
       itens: itensFormatados,
       cliente: {
