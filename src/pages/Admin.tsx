@@ -28,14 +28,14 @@ const irParaProdutos = () => {
 };
 
   const fecharLoja = async () => {
-    await axios.post("https://coroa-burguer-backend.onrender.com/loja-status", {
+    await axios.post("http://localhost:3001/loja-status", {
       aberto: false
     })
     alert("Loja fechada")
   }
 
   const abrirLoja = async () => {
-    await axios.post("https://coroa-burguer-backend.onrender.com/loja-status", {
+    await axios.post("http://localhost:3001/loja-status", {
       aberto: true
     })
     alert("Loja aberta")
@@ -48,7 +48,7 @@ const irParaProdutos = () => {
 
   const carregarPedidos = async () => {
     try {
-      const res = await axios.get("https://coroa-burguer-backend.onrender.com/pedidos")
+      const res = await axios.get("http://localhost:3001/pedidos")
       setPedidos(res.data || [])
     } catch (err) {
       console.error(err)
@@ -59,7 +59,7 @@ const irParaProdutos = () => {
 
     carregarPedidos()
 
-    socketRef.current = io("https://coroa-burguer-backend.onrender.com")
+    socketRef.current = io("http://localhost:3001")
 
     socketRef.current.on("novo-pedido", (pedido: Pedido) => {
 
@@ -120,7 +120,7 @@ const irParaProdutos = () => {
 
   const atualizarStatus = async (id: number, status: string) => {
 
-  await axios.put(`https://coroa-burguer-backend.onrender.com/pedidos/${id}/status`, { status })
+  await axios.put(`http://localhost:3001/pedidos/${id}/status`, { status })
 
   const pedido = pedidos.find(p => p.id === id);
 
@@ -142,7 +142,7 @@ const irParaProdutos = () => {
 
   const excluirPedido = async (id: number) => {
 
-    await axios.delete(`https://coroa-burguer-backend.onrender.com/pedidos/${id}`)
+    await axios.delete(`http://localhost:3001/pedidos/${id}`)
 
     setPedidos(prev => prev.filter(p => p.id !== id))
 
