@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+{/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
+const API_URL = "http://localhost:3001";
+
 
 
 type Produto = {
@@ -51,7 +54,7 @@ export default function ProdutosAdmin() {
 
   const buscarProdutos = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/produtos");
+      const res = await axios.get("`${API_URL}/produtos");
       setProdutos(res.data);
     } catch (err) {
       console.log(err);
@@ -71,11 +74,11 @@ export default function ProdutosAdmin() {
     const formData = new FormData();
     formData.append("imagem", imagem);
 
-    const res = await axios.post("http://localhost:3001/upload", formData, {
+    const res = await axios.post("`${API_URL}", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    setImagemUrl(`http://localhost:3001${res.data.imagem}`);
+    setImagemUrl(`${API_URL}${res.data.imagem}`);
     alert("Imagem enviada!");
   };
 
@@ -106,12 +109,12 @@ export default function ProdutosAdmin() {
     try {
       if (editandoId !== null) {
         await axios.put(
-          `http://localhost:3001/produtos/${editandoId}`,
+          `${API_URL}/produtos/${editandoId}`,
           dadosProduto
         );
         alert("Produto atualizado!");
       } else {
-        await axios.post("http://localhost:3001/produtos", dadosProduto);
+        await axios.post("`${API_URL}/produtos", dadosProduto);
         alert("Produto cadastrado!");
       }
 
@@ -133,7 +136,7 @@ export default function ProdutosAdmin() {
 
   const excluirProduto = async (id: number) => {
     if (!window.confirm("Excluir produto?")) return;
-    await axios.delete(`http://localhost:3001/produtos/${id}`);
+    await axios.delete(`${API_URL}/produtos/${id}`);
     buscarProdutos();
   };
 

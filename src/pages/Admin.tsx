@@ -4,6 +4,9 @@ import { io } from "socket.io-client"
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+{/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
+const API_URL = "http://localhost:3001";
+
 type Pedido = {
   id: number
   total: number
@@ -28,14 +31,14 @@ const irParaProdutos = () => {
 };
 
   const fecharLoja = async () => {
-    await axios.post("http://localhost:3001/loja-status", {
+    await axios.post("`${API_URL}/loja-status", {
       aberto: false
     })
     alert("Loja fechada")
   }
 
   const abrirLoja = async () => {
-    await axios.post("http://localhost:3001/loja-status", {
+    await axios.post("`${API_URL}/loja-status", {
       aberto: true
     })
     alert("Loja aberta")
@@ -48,7 +51,7 @@ const irParaProdutos = () => {
 
   const carregarPedidos = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/pedidos")
+      const res = await axios.get("`${API_URL}/pedidos")
       setPedidos(res.data || [])
     } catch (err) {
       console.error(err)
@@ -120,7 +123,7 @@ const irParaProdutos = () => {
 
   const atualizarStatus = async (id: number, status: string) => {
 
-  await axios.put(`http://localhost:3001/pedidos/${id}/status`, { status })
+  await axios.put("`${API_URL}/pedidos/${id}/status`", { status })
 
   const pedido = pedidos.find(p => p.id === id);
 
@@ -142,7 +145,7 @@ const irParaProdutos = () => {
 
   const excluirPedido = async (id: number) => {
 
-    await axios.delete(`http://localhost:3001/pedidos/${id}`)
+    await axios.delete("`${API_URL}/pedidos/${id}`")
 
     setPedidos(prev => prev.filter(p => p.id !== id))
 

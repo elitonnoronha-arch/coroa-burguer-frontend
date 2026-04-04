@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 
+{/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
+const API_URL = "http://localhost:3001";
+
 type ItemCarrinho = {
   id: number;
   nome: string;
@@ -56,7 +59,7 @@ export default function Checkout({ carrinho, limparCarrinho }: CheckoutProps) {
       }));
 
       // Envia para backend
-      await axios.post("https://coroa-burguer-backend.onrender.com/pedidos", {
+      await axios.post("`${API_URL}/pedidos", {
         total,
         itens: itensFormatados,
         nome_cliente: nome,

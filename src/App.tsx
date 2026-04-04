@@ -7,6 +7,9 @@ import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Precificacao from "./pages/Precificacao";
 
+{/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
+const API_URL = "http://localhost:3001";
+
 type ItemCarrinho = {
   id: number;
   nome: string;
@@ -197,7 +200,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   }
 
   try {
-    const status = await axios.get("http://localhost:3001/loja-status");
+    const status = await axios.get("`${API_URL}/loja-status");
 
     if (!status.data.loja_aberta) {
       alert("Estamos fechados no momento");
@@ -219,7 +222,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   formaPagamento
 });
     // ✅ ENVIA CORRETO PRO BACKEND
-    await axios.post("http://localhost:3001/pedidos", {
+    await axios.post("`${API_URL}/pedidos", {
       total,
       itens: itensFormatados,
       cliente: {
