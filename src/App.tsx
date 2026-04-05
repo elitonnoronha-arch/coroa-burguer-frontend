@@ -8,7 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Precificacao from "./pages/Precificacao";
 
 {/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
-const API_URL = "http://localhost:3001";
+const API_URL = `http://localhost:3001`;
 
 type ItemCarrinho = {
   id: number;
