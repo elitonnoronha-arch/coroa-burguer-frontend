@@ -151,6 +151,22 @@ useEffect(() => {
   };
 }, []);
 
+useEffect(() => {
+
+  const enviarPing = async () => {
+    await fetch("http://localhost:3001/visitas/ping", {
+      method: "POST"
+    })
+  }
+
+  enviarPing()
+
+  const intervalo = setInterval(enviarPing, 5000)
+
+  return () => clearInterval(intervalo)
+
+}, [])
+
 
 
   const adicionarCarrinho = (produto: Produto) => {
@@ -826,6 +842,7 @@ function App() {
         <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
         <Route path="/admin/produtos" element={<PrivateRoute><ProdutosAdmin /></PrivateRoute>} />
         <Route path="/visitas" element={<PrivateRoute><Visitas /></PrivateRoute>} />
+        {/*<Route path="/admin/visitas" element={<Visitas />} /> */}
         <Route path="/precificacao" element={<Precificacao />} />
         
 

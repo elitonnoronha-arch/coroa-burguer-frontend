@@ -21,7 +21,8 @@ export default function Admin() {
 
   const [pedidos, setPedidos] = useState<Pedido[]>([])
   const [alerta, setAlerta] = useState<any>(null)
-  const [, atualizarTempo] = useState(0)
+  
+  
   const socketRef = useRef<any>(null)
 
   const navigate = useNavigate();
@@ -78,6 +79,9 @@ const irParaProdutos = () => {
 
     })
 
+
+    
+
     
 
     return () => {
@@ -86,16 +90,9 @@ const irParaProdutos = () => {
 
   }, [])
 
-  useEffect(() => {
+  
 
-    const intervalo = setInterval(() => {
-      atualizarTempo(v => v + 1)
-    }, 1000)
-
-    return () => clearInterval(intervalo)
-
-  }, [])
-
+  
   const mensagemStatus = (pedido:any, status:string) => {
 
   const nome = pedido.nome || pedido.cliente?.nome || "";
@@ -260,6 +257,10 @@ fontWeight:"bold"
 
   Cadastrar Produtos ➡ 
 </button>
+
+<Link to="/visitas">
+  👥 Ver Visitantes
+</Link>
 
 
 <div style={{
@@ -706,6 +707,8 @@ zIndex:999
 }}>
 
 <h1>🔔 Novo Pedido Recebido!</h1>
+
+
 
 <h2>Pedido #{pedido.id}</h2>
 
