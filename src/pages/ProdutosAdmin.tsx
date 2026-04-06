@@ -74,12 +74,15 @@ export default function ProdutosAdmin() {
     const formData = new FormData();
     formData.append("imagem", imagem);
 
-    const res = await axios.post(`${API_URL}`, formData, {
+    const res = await axios.post(`${API_URL}/upload`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-
-    setImagemUrl(`${API_URL}${res.data.imagem}`);
-    alert("Imagem enviada!");
+    
+     setImagemUrl(res.data.imagem); // 🔥 NÃO precisa concatenar API_URL
+  alert("Imagem enviada!");
+  
+    /*setImagemUrl(`${API_URL}${res.data.imagem}`);
+    alert("Imagem enviada!");*/
   };
 
   const salvarProduto = async () => {

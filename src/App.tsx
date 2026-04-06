@@ -6,6 +6,7 @@ import ProdutosAdmin from "./pages/ProdutosAdmin";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Precificacao from "./pages/Precificacao";
+import Visitas from "./pages/Visitas";
 
 {/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
 const API_URL = `http://localhost:3001`;
@@ -96,6 +97,35 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
     setAlturaCarrinho(carrinhoBoxRef.current.offsetHeight);
   }
 }, [carrinho, abrirCarrinho]);
+
+useEffect(() => {
+  let visitanteId: string;
+
+  // 🔥 visitante entrou
+  axios.post("http://localhost:3001/visita/inicio")
+    .then(res => {
+      visitanteId = res.data.id;
+      console.log("VISITA INICIADA:", visitanteId); // 👈 importante
+    });
+      
+  // 🔥 quando sair
+  const sair = () => {
+    if (visitanteId) {
+      navigator.sendBeacon(
+        "http://localhost:3001/visita/fim",
+        JSON.stringify({ id: visitanteId })
+      );
+    }
+  };
+
+  window.addEventListener("beforeunload", sair);
+
+  return () => {
+    window.removeEventListener("beforeunload", sair);
+  };
+}, []);
+
+
 
   const adicionarCarrinho = (produto: Produto) => {
     setCarrinho(prev => {
@@ -769,7 +799,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
         <Route path="/admin/produtos" element={<PrivateRoute><ProdutosAdmin /></PrivateRoute>} />
+        <Route path="/visitas" element={<PrivateRoute><Visitas /></PrivateRoute>} />
         <Route path="/precificacao" element={<Precificacao />} />
+        
+
       </Routes>
     </div>
   );
