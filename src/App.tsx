@@ -39,6 +39,7 @@ type Produto = {
 //FUNÇAO LOJA//
 
 function Loja() {
+  const visitanteIdRef = useRef<string | null>(null);
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [carrinho, setCarrinho] = useState<ItemCarrinho[]>([]);
   const [animarCarrinho, setAnimarCarrinho] = useState(false);
@@ -79,6 +80,31 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
       .then(res => setProdutos(res.data))
       .catch(err => console.error(err));
   }, []);
+
+  useEffect(() => {
+  // visitante entrou
+  axios.post("http://localhost:3001/visita/inicio")
+    .then(res => {
+      visitanteIdRef.current = res.data.id;
+      console.log("VISITA:", visitanteIdRef.current);
+    });
+
+  // visitante saiu
+  const sair = () => {
+    if (visitanteIdRef.current) {
+      navigator.sendBeacon(
+        "http://localhost:3001/visita/fim",
+        JSON.stringify({ id: visitanteIdRef.current })
+      );
+    }
+  };
+
+  window.addEventListener("beforeunload", sair);
+
+  return () => {
+    window.removeEventListener("beforeunload", sair);
+  };
+}, []);
 
   useEffect(() => {
     const verificarStatus = () => {
