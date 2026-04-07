@@ -843,7 +843,7 @@ function App() {
         <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
         <Route path="/admin/produtos" element={<PrivateRoute><ProdutosAdmin /></PrivateRoute>} />
         <Route path="/visitas" element={<PrivateRoute><Visitas /></PrivateRoute>} />
-        <Route path="/visitas" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         {/*<Route path="/admin/visitas" element={<Visitas />} /> */}
         {/*<Route path="/dashboard" element={<Dashboard />} /> */}
 
