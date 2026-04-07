@@ -262,6 +262,10 @@ fontWeight:"bold"
   👥 Ver Visitantes
 </Link>
 
+<Link to="/dashboard">
+  👥 Ver Dashboard
+</Link>
+
 
 <div style={{
 display:"flex",
