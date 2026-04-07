@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Precificacao from "./pages/Precificacao";
 import Visitas from "./pages/Visitas";
+import Dashboard from "./pages/Dashboard"
 
 {/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
 const API_URL = `http://localhost:3001`;
@@ -842,7 +843,11 @@ function App() {
         <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
         <Route path="/admin/produtos" element={<PrivateRoute><ProdutosAdmin /></PrivateRoute>} />
         <Route path="/visitas" element={<PrivateRoute><Visitas /></PrivateRoute>} />
+        <Route path="/visitas" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
         {/*<Route path="/admin/visitas" element={<Visitas />} /> */}
+        {/*<Route path="/dashboard" element={<Dashboard />} /> */}
+
+
         <Route path="/precificacao" element={<Precificacao />} />
         
 
