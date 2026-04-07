@@ -186,137 +186,42 @@ padding:20
  Painel de Pedidos
 </h1>
 
+{/*BOTOES DO PAINEL DE PEDIDOS*/}
 
 <div style={{
-marginBottom:"20px",
-display:"flex",
-gap:"10px"
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "10px",
+  flexWrap: "wrap",
+  marginBottom: 20
 }}>
 
-{/*ABRIR LOJA*/}
+  <button onClick={abrirLoja} style={botaoTopo("#2ecc71")}>
+    🟢 Abrir Loja
+  </button>
 
-<button
-onClick={abrirLoja}
-style={{
-background:"#2ecc71",
-color:"#fff",
-border:"none",
-padding:"8px 10px",
-borderRadius:"6px",
-cursor:"pointer",
-fontWeight:"bold",
+  <button onClick={fecharLoja} style={botaoTopo("#e63946")}>
+    🔴 Fechar Loja
+  </button>
 
-}}
->
+  <button onClick={irParaProdutos} style={botaoTopo("#3498db")}>
+    Cadastrar
+  </button>
 
-  
-🟢 Abrir Loja
-</button>
+  <button onClick={verVisitantes} style={botaoTopo("#4202d6")}>
+    Visitantes
+  </button>
 
-{/*FECHAR LOJA*/}
+  <button onClick={verDashboard} style={botaoTopo("#bc5f02")}>
+    Dashboard
+  </button>
 
-<button
-onClick={fecharLoja}
-style={{
-background:"#e63946",
-color:"#fff",
-border:"none",
-padding:"8px 10px",
-borderRadius:"6px",
-cursor:"pointer",
-fontWeight:"bold"
-}}
->
-
-
-
-🔴 Fechar Loja
-</button>
+  <button onClick={verPrecificacao} style={botaoTopo("#6d0045")}>
+    💰 Precificação
+  </button>
 
 </div>
-
-{/*IR PARA PRODUTOS*/}
-<button
-  onClick={irParaProdutos}
-  style={{
-    background: "#3498db",
-    color: "#fff",
-    border: "none",
-    padding: "8px 10px",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    marginLeft:0,
-    marginBottom:20,
-    
-  }}
->
-    {/*CADASTRO DE PRODUTOS*/}
-
-  Cadastrar 
-</button>
-
-
-{/*IR PARA VISITANTES*/}
-<button
-  onClick={verVisitantes}
-  style={{
-    background: "#4202d6",
-    color: "#fff",
-    border: "none",
-    padding: "8px 10px",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    marginLeft:10,
-    marginBottom:20,
-    
-  }}
->
-    {/*VISITANTES*/}
-
-Visitantes
-</button>
-
-<button
-  onClick={verDashboard}
-  style={{
-    background: "#bc5f02",
-    color: "#fff",
-    border: "none",
-    padding: "8px 10px",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    marginLeft:10,
-    marginBottom:20,
-    
-  }}
->
-    {/*Dashboard*/}
-
-  Dashboard  
-</button>
-
-<button
-  onClick={verPrecificacao}
-  style={{
-    background: "#6d0045",
-    color: "#fff",
-    border: "none",
-    padding: "8px 10px",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    marginLeft:10,
-    marginBottom:20,
-    
-  }}
->
-    {/*Precificacao*/}
-
- 💰Precificacao 
-</button>
 
 
 <div style={{
@@ -997,4 +902,17 @@ whiteSpace:"nowrap"
 
 }
 
+}
+
+function botaoTopo(cor:string) {
+  return {
+    background: cor,
+    color: "#fff",
+    border: "none",
+    padding: "10px 14px",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "14px"
+  }
 }
