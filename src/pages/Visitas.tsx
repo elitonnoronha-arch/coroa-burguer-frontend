@@ -164,7 +164,7 @@ export default function Visitas() {
           {top5.map(([id, v]: any, i) => (
             <div key={id} style={linha}>
               <b>#{i + 1} - {id}</b>
-              <span>{formatarTempo(v.tempo)}</span>
+              <span>{formatarTempo(v.ativo ? v.tempo : v.tempo_final || v.tempo)}</span>
             </div>
           ))}
         </Box>
