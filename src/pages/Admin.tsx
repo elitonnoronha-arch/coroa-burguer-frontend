@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import axios from "axios"
 import { io } from "socket.io-client"
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 {/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
 const API_URL = "http://localhost:3001";
@@ -29,6 +29,19 @@ export default function Admin() {
 
 const irParaProdutos = () => {
   navigate("/admin/produtos"); // Caminho da página de produtos
+};
+
+const verVisitantes = () => {
+  navigate("/visitas"); // Caminho da página Visitantes
+};
+
+
+const verDashboard = () => {
+  navigate("/dashboard"); // Caminho da página Dashboard
+};
+
+const verPrecificacao = () => {
+  navigate("/precificacao"); // Caminho da página precificacao
 };
 
   const fecharLoja = async () => {
@@ -173,21 +186,6 @@ padding:20
  Painel de Pedidos
 </h1>
 
-<Link to="/precificacao" style={{
-  display: "inline-block",
-  marginTop: 20,
-  padding: "10px 15px",
-  background: "#2a9d8f",
-  color: "#fff",
-  borderRadius: 8,
-  textDecoration: "none",
-  fontWeight: "bold"
-}}>
-  💰 Precificação
-</Link>
-
-
-
 
 <div style={{
 marginBottom:"20px",
@@ -203,7 +201,7 @@ style={{
 background:"#2ecc71",
 color:"#fff",
 border:"none",
-padding:"8px 15px",
+padding:"8px 10px",
 borderRadius:"6px",
 cursor:"pointer",
 fontWeight:"bold",
@@ -223,7 +221,7 @@ style={{
 background:"#e63946",
 color:"#fff",
 border:"none",
-padding:"8px 15px",
+padding:"8px 10px",
 borderRadius:"6px",
 cursor:"pointer",
 fontWeight:"bold"
@@ -244,7 +242,7 @@ fontWeight:"bold"
     background: "#3498db",
     color: "#fff",
     border: "none",
-    padding: "8px 15px",
+    padding: "8px 10px",
     borderRadius: "6px",
     cursor: "pointer",
     fontWeight: "bold",
@@ -255,16 +253,70 @@ fontWeight:"bold"
 >
     {/*CADASTRO DE PRODUTOS*/}
 
-  Cadastrar Produtos ➡ 
+  Cadastrar 
 </button>
 
-<Link to="/visitas">
-  👥 Ver Visitantes
-</Link>
 
-<Link to="/dashboard">
-  👥 Ver Dashboard
-</Link>
+{/*IR PARA VISITANTES*/}
+<button
+  onClick={verVisitantes}
+  style={{
+    background: "#4202d6",
+    color: "#fff",
+    border: "none",
+    padding: "8px 10px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontWeight: "bold",
+    marginLeft:10,
+    marginBottom:20,
+    
+  }}
+>
+    {/*VISITANTES*/}
+
+Visitantes
+</button>
+
+<button
+  onClick={verDashboard}
+  style={{
+    background: "#bc5f02",
+    color: "#fff",
+    border: "none",
+    padding: "8px 10px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontWeight: "bold",
+    marginLeft:10,
+    marginBottom:20,
+    
+  }}
+>
+    {/*Dashboard*/}
+
+  Dashboard  
+</button>
+
+<button
+  onClick={verPrecificacao}
+  style={{
+    background: "#6d0045",
+    color: "#fff",
+    border: "none",
+    padding: "8px 10px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontWeight: "bold",
+    marginLeft:10,
+    marginBottom:20,
+    
+  }}
+>
+    {/*Precificacao*/}
+
+ 💰Precificacao 
+</button>
 
 
 <div style={{
@@ -272,8 +324,6 @@ display:"flex",
 justifyContent:"center",
 gap:20,
 marginBottom:20,
-
-
 }}>
 
   
