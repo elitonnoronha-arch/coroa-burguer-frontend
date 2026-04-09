@@ -9,21 +9,26 @@ export default function Dashboard() {
   const [dados, setDados] = useState<any>(null)
 
   useEffect(() => {
-    const buscar = async () => {
+  const buscar = async () => {
+    try {
       const res = await axios.get(`${API_URL}/dashboard`)
       setDados(res.data)
+    } catch (err) {
+      console.error("Erro ao buscar dashboard:", err)
     }
+  }
 
-    buscar()
-  }, [])
+  buscar()
+}, [])
 
-  if (!dados) return <h2>Carregando...</h2>
+ if (dados === null) return <h2>Carregando...</h2>
+if (dados === false) return <h2>Erro ao carregar dashboard</h2>
 
   return (
     <div style={container}>
 
       <h1 style={{ textAlign: "center" }}>
-        📊 Dashboard Coroa Burguer
+        📊 Dashboard Coroa Burger
       </h1>
 
       {/* HOJE */}

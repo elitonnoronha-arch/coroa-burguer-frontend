@@ -194,7 +194,8 @@ padding:20
   alignItems: "center",
   gap: "10px",
   flexWrap: "wrap",
-  marginBottom: 20
+  marginBottom: 20,
+  marginLeft: 10
 }}>
 
   <button onClick={abrirLoja} style={botaoTopo("#2ecc71")}>
@@ -229,6 +230,7 @@ display:"flex",
 justifyContent:"center",
 gap:20,
 marginBottom:20,
+
 }}>
 
   
