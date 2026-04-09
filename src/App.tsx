@@ -53,6 +53,7 @@ const [endereco, setEndereco] = useState("");
 const [telefone, setTelefone] = useState("");
 const [formaPagamento, setFormaPagamento] = useState("");
 
+
  const categorias = [
   "Hambúrguer",
   "Acompanhamentos",
@@ -67,6 +68,23 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
     const audio = new Audio("/notificacao.mp3");
     audio.play().catch(() => {});
   };
+
+  useEffect(() => {
+  const buscarStatus = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/loja-status")
+      setLojaAberta(res.data.loja_aberta)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  buscarStatus()
+
+  const interval = setInterval(buscarStatus, 3000)
+
+  return () => clearInterval(interval)
+}, [])
 
   useEffect(() => {
     if (carrinhoRef.current.length > carrinho.length) {
@@ -344,6 +362,25 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", backgroundColor: "#fff5f5", minHeight: "100vh", width: "100%", display: "flex", justifyContent: "center" }}>
+
+     {!lojaAberta && (
+  <div style={{
+    background: "linear-gradient(135deg, #d62828, #ff4d4f)",
+    color: "#fff",
+    padding: "15px",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 16,
+    borderRadius: 10,
+    margin: "10px 20px",
+    boxShadow: "0 4px 15px rgba(0,0,0,0.2)"
+  }}>
+    🚫 Estamos fechados no momento <br />
+    ⏰ Voltaremos amanhã
+  </div>
+)}
+
+
       <div style={{ width: "100%", maxWidth: 1100 }}>
         {/* HEADER */}
         <div style={{
@@ -409,6 +446,8 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   Admin&#128274;
   </Link>
  </div>
+
+ 
 
         <div style={{padding:20,paddingBottom:220}}>
 
