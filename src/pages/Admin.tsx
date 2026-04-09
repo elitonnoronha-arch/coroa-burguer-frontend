@@ -110,7 +110,7 @@ const verPrecificacao = () => {
 
   const nome = pedido.nome || pedido.cliente?.nome || "";
   
-  let mensagem = `🍔 *Coroa Burguer*%0A%0A`;
+  let mensagem = `🍔 *Coroa Burger*%0A%0A`;
 
   mensagem += `Olá ${nome}!%0A%0A`;
 
@@ -805,7 +805,7 @@ let conteudo = `
 <body>
 
   <div class="center">
-  <h2>🍔 Coroa Burguer</h2>
+  <h2>🍔 Coroa Burger</h2>
     <p>Pedido #${pedido.id}</p>
   </div>
 

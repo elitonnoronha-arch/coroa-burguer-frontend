@@ -364,7 +364,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
         }}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <img src="/logo.png" alt="logo" style={{height:50}}/>
-            <span>Coroa Burguer</span>
+            <span>Coroa Burger</span>
             <div style={{ fontSize:12, marginTop:4, color:"#fff" }}>
               {lojaAberta ? "🟢 Loja aberta" : "🔴 Loja fechada"}
             </div>
