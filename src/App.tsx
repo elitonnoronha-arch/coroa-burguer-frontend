@@ -365,23 +365,50 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
 
      {!lojaAberta && (
   <div style={{
-    background: "linear-gradient(135deg, #d62828, #ff4d4f)",
-    color: "#fff",
-    padding: "15px",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 16,
-    borderRadius: 10,
-    margin: "10px 20px",
-    boxShadow: "0 4px 15px rgba(0,0,0,0.2)"
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(0,0,0,0.6)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 9999
   }}>
-    🚫 Estamos fechados no momento <br />
-    ⏰ Voltaremos amanhã
+    
+    <div style={{
+      background: "#fff",
+      padding: "30px",
+      borderRadius: "16px",
+      textAlign: "center",
+      width: "90%",
+      maxWidth: "400px",
+      boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+      animation: "fadeIn 0.3s ease"
+    }}>
+      
+      <h2 style={{ color: "#d62828", marginBottom: 10 }}>
+        🚫 Loja Fechada
+      </h2>
+
+      <p style={{ fontSize: 16, marginBottom: 10 }}>
+        Estamos fechados no momento
+      </p>
+
+      <p style={{ fontSize: 14, color: "#555" }}>
+        ⏰ Voltaremos amanhã!
+      </p>
+
+    </div>
+
   </div>
 )}
 
-
       <div style={{ width: "100%", maxWidth: 1100 }}>
+
+            
+
         {/* HEADER */}
         <div style={{
           background:"#d62828",
