@@ -376,18 +376,19 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
     justifyContent: "center",
     zIndex: 9999
   }}>
-    
+  
     <div style={{
       background: "#fff",
       padding: "30px",
       borderRadius: "16px",
       textAlign: "center",
       width: "90%",
-      maxWidth: "400px",
+      maxWidth: "350px",
+     /* maxHeight: "350px",*/
       boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
       animation: "fadeIn 0.3s ease"
     }}>
-      
+      <img src="/logo.png" alt="logo" style={{height:80, marginLeft:"37%", marginBottom:"5px"}}/>
       <h2 style={{ color: "#d62828", marginBottom: 10 }}>
         🚫 Loja Fechada
       </h2>
@@ -468,7 +469,9 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   fontSize:14,
   color:"#d62828",
   fontWeight:"bold",
-  textDecoration:"none"
+  textDecoration:"none",
+  marginTop:"50" 
+  
   }}>
   Admin&#128274;
   </Link>
@@ -481,7 +484,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
 {/*BANNER TOPO*/}
 
           <div style={{
-  margin:"-35px 0 20px 0",
+  margin:"-70px 0 20px 0",
   borderRadius:5,
   overflow:"hidden",
   boxShadow:"0 6px 20px rgba(0,0,0,0.2)"
@@ -491,7 +494,7 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
     alt="promo"
     style={{
       width:"100%",
-      height:70,   /*180 */
+      height:30,   /*180 */
       objectFit:"cover"
     }}
   />
