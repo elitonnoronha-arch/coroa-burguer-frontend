@@ -284,6 +284,8 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
     return;
   }
 
+  
+
   // 🔴 VALIDAÇÃO (ESSENCIAL)
   if (!nomeCliente || !telefone) {
     alert("Preencha nome e telefone");
@@ -357,6 +359,34 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   } catch (error) {
     console.error(error);
     alert("Erro ao finalizar pedido");
+  }
+};
+    //pagarOnline
+    
+const pagarOnline = async () => {
+  if (carrinho.length === 0) {
+    alert("Carrinho vazio");
+    return;
+  }
+
+  try {
+    const itensFormatados = carrinho.map(item => ({
+      nome: item.nome,
+      preco: item.preco,
+      quantidade: item.quantidade
+    }));
+
+    const res = await axios.post(`${API_URL}/criar-pagamento`, {
+      itens: itensFormatados,
+      total,
+      email: "teste@email.com"
+    });
+
+    window.location.href = res.data.link;
+
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao iniciar pagamento");
   }
 };
 
@@ -869,25 +899,36 @@ const toggleIngrediente = (id:number, ingrediente:string) => {
   {/* TOTAL */}
   <strong>Total: R$ {total.toFixed(2)}</strong>
 
- <button
+ 
+
+  <button
   onClick={finalizarPedido}
+  style={{
+    background:"#25D366",
+    color:"#fff",
+    padding:"10px",
+    borderRadius:8,
+    border:"none",
+    marginTop:10,
+    fontWeight:"bold"
+  }}
+>
+  WhatsApp 📱
+</button>
+
+<button
+  onClick={pagarOnline}
   style={{
     background:"#d62828",
     color:"#fff",
-    border:"1px solid #eee",
-    /*border:"none",*/
-    padding:"12px",
+    padding:"10px",
     borderRadius:8,
-    cursor:"pointer",
-    fontWeight:"bold",
+    border:"none",
     marginTop:10,
-     position:"sticky",
-    bottom:0,
-    maxHeight:"85vh",
-    
+    fontWeight:"bold"
   }}
 >
-  Finalizar no WhatsApp
+  Pagar Online 💳
 </button>
 
 </div>
