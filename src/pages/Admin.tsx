@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 //import { Link } from "react-router-dom";
 
 {/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
-const API_URL = "http://localhost:3001";
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3001"
+    : "https://coroa-burguer-backend-1.onrender.com";
 
 type Pedido = {
   id: number
@@ -76,7 +79,7 @@ const verPrecificacao = () => {
 
     carregarPedidos()
 
-    socketRef.current = io("http://localhost:3001")
+    socketRef.current = io(API_URL)
 
     socketRef.current.on("novo-pedido", (pedido: Pedido) => {
 

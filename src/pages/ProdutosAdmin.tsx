@@ -3,7 +3,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 {/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
-const API_URL = "http://localhost:3001";
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3001"
+    : "https://coroa-burguer-backend-1.onrender.com";
 
 
 
@@ -255,7 +258,7 @@ export default function ProdutosAdmin() {
               <div key={prod.id} style={{ background: "#fff", padding: 15, borderRadius: 16, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
                 <img
   alt={prod.nome}
-  src={prod.imagem?.startsWith("http") ? prod.imagem : `http://localhost:3001${prod.imagem}`}
+  src={prod.imagem?.startsWith("http") ? prod.imagem : `${API_URL}${prod.imagem}`}
   style={{ width: "100%", height: 150, objectFit: "cover", borderRadius: 10, marginBottom: 10 }}
 />
                 <strong>{prod.nome}</strong>

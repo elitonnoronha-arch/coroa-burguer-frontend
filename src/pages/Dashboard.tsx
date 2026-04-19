@@ -2,7 +2,10 @@ import { useEffect, useState } from "react"
 import type { CSSProperties } from "react"
 import axios from "axios"
 
-const API_URL = "http://localhost:3001"
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3001"
+    : "https://coroa-burguer-backend-1.onrender.com";
 
 export default function Dashboard() {
 
