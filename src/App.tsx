@@ -9,8 +9,11 @@ import Precificacao from "./pages/Precificacao";
 import Visitas from "./pages/Visitas";
 import Dashboard from "./pages/Dashboard"
 
-{/*const API_URL = "https://coroa-burguer-backend-1.onrender.com";*/}
-const API_URL = `http://localhost:3001`;
+
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3001"
+    : "https://coroa-burguer-backend-1.onrender.com";
 
 type ItemCarrinho = {
   id: number;
@@ -72,7 +75,7 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
   useEffect(() => {
   const buscarStatus = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/loja-status")
+      const res = await axios.get(`${API_URL}/loja-status`)
       setLojaAberta(res.data.loja_aberta)
     } catch (err) {
       console.error(err)
@@ -95,14 +98,14 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/produtos")
+      .get(`${API_URL}/produtos`)
       .then(res => setProdutos(res.data))
       .catch(err => console.error(err));
   }, []);
 
   useEffect(() => {
   // visitante entrou
-  axios.post("http://localhost:3001/visita/inicio")
+  axios.post(`${API_URL}/visita/inicio`)
     .then(res => {
       visitanteIdRef.current = res.data.id;
       console.log("VISITA:", visitanteIdRef.current);
@@ -112,7 +115,7 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
   const sair = () => {
     if (visitanteIdRef.current) {
       navigator.sendBeacon(
-        "http://localhost:3001/visita/fim",
+        `${API_URL}/visita/fim`,
         JSON.stringify({ id: visitanteIdRef.current })
       );
     }
@@ -128,7 +131,7 @@ const [alturaCarrinho, setAlturaCarrinho] = useState(0);
   useEffect(() => {
     const verificarStatus = () => {
       axios
-        .get("http://localhost:3001/loja-status")
+        .get(`${API_URL}/loja-status`)
         .then(res => setLojaAberta(res.data.loja_aberta))
         .catch(err => console.error(err));
     };
@@ -147,7 +150,7 @@ useEffect(() => {
   let visitanteId: string;
 
   // 🔥 visitante entrou
-  axios.post("http://localhost:3001/visita/inicio")
+  axios.post(`${API_URL}/visita/inicio`)
     .then(res => {
       visitanteId = res.data.id;
       console.log("VISITA INICIADA:", visitanteId); // 👈 importante
@@ -157,7 +160,7 @@ useEffect(() => {
   const sair = () => {
     if (visitanteId) {
       navigator.sendBeacon(
-        "http://localhost:3001/visita/fim",
+        `${API_URL}/visita/fim`,
         JSON.stringify({ id: visitanteId })
       );
     }
@@ -173,7 +176,7 @@ useEffect(() => {
 useEffect(() => {
 
   const enviarPing = async () => {
-    await fetch("http://localhost:3001/visitas/ping", {
+    await fetch(`${API_URL}/visitas/ping`, {
       method: "POST"
     })
   }
@@ -370,23 +373,34 @@ const pagarOnline = async () => {
   }
 
   try {
-    const itensFormatados = carrinho.map(item => ({
-      nome: item.nome,
-      preco: item.preco,
-      quantidade: item.quantidade
-    }));
-
-    const res = await axios.post(`${API_URL}/criar-pagamento`, {
-      itens: itensFormatados,
+    // 🔥 1. CRIA PEDIDO PRIMEIRO
+    const resPedido = await axios.post(`${API_URL}/pedidos`, {
       total,
-      email: "teste@email.com"
+      itens: carrinho,
+      cliente: {
+        nome: nomeCliente,
+        telefone,
+        endereco,
+        formaPagamento
+      }
     });
 
-    window.location.href = res.data.link;
+    const pedido_id = resPedido.data.id;
+
+    // 🔥 2. CRIA PAGAMENTO COM ESSE ID
+    const resPagamento = await axios.post(`${API_URL}/criar-pagamento`, {
+      itens: carrinho,
+      total,
+      email: "test_user_xxx@testuser.com", // usa seu teste
+      pedido_id // 🔥 ESSENCIAL
+    });
+
+    // 🔥 3. REDIRECIONA
+    window.location.href = resPagamento.data.link;
 
   } catch (error) {
     console.error(error);
-    alert("Erro ao iniciar pagamento");
+    alert("Erro ao pagar");
   }
 };
 
@@ -582,7 +596,7 @@ const pagarOnline = async () => {
     <img
       src={prod.imagem?.startsWith("http")
         ? prod.imagem
-        : `http://localhost:3001${prod.imagem}`}
+        : `${API_URL}${prod.imagem}`}
       alt={prod.nome}
       style={{
         width:"100%",
