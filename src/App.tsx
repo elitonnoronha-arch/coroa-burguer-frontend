@@ -442,7 +442,8 @@ const pagarOnline = async () => {
       </p>
 
       <p style={{ fontSize: 14, color: "#555" }}>
-        ⏰ Abriremos em breve! {/*Voltaremos amanhã!*/}
+        ⏰ Abriremos em breve! 
+        
       </p>
 
     </div>
