@@ -596,7 +596,7 @@ const pagarOnline = async () => {
       {/* IMAGENS DO CARDAPIO */}
     <img
       src={prod.imagem?.startsWith("http")
-        ? prod.imagem
+        ? prod.imagem.replace("http://", "https://")
         : `${API_URL}${prod.imagem}`}
       alt={prod.nome}
       style={{
