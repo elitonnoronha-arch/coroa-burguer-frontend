@@ -475,7 +475,7 @@ const pagarOnline = async () => {
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <img src="/logo.png" alt="logo" style={{height:50}}/>
             <span>Coroa Burger</span>
-            <div style={{ fontSize:12, marginTop:4, color:"#fff" }}>
+            <div style={{ fontSize:10, marginTop:4, color:"#fff" }}>
               {lojaAberta ? "🟢 Loja aberta" : "🔴 Loja fechada"}
             </div>
           </div>
