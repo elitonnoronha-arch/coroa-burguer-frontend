@@ -429,7 +429,7 @@ const pagarOnline = async () => {
       width: "90%",
       maxWidth: "350px",
      /* maxHeight: "350px",*/
-      boxShadow: "0 10px 40px rgba(0,0,0,0.9)",
+      boxShadow: "0 10px 40px rgba(0,0,0,0.20)",
       animation: "fadeIn 0.3s ease"
     }}>
       <img src="/logo.png" alt="logo" style={{height:80, marginLeft:"37%", marginBottom:"5px"}}/>
